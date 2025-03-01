@@ -16,6 +16,7 @@ function App() {
     const [sitemaps, setSitemaps] = useState<string[]>([]);
     const [urlError, setUrlError] = useState<boolean>(false);
     const [selectedSitemap, setSelectedSitemap] = useState<string>("");
+    const [apiKey, setApiKey] = useState<string>("");
 
     useEffect(() => {
         if (!modeSet) {
@@ -115,6 +116,19 @@ function App() {
                 </Button>
                 {sitemaps && sitemaps.length > 0 &&
                     <>
+                        <TextField
+                            sx={{
+                                marginTop: "30px",
+                                width: "90%",
+                                marginBottom: "30px",
+                            }}
+                            variant={"standard"}
+                            label={"Openhab API token (optional, leave blank to keep current)"}
+                            value={apiKey}
+                            onChange={(e) => {
+                                setApiKey(e.target.value);
+                            }}
+                        ></TextField>
                         <List sx={{width: "90%", minHeight: "150px", marginTop: "10px", border: "1px solid #c0c0c0"}}>
                             {sitemaps.map((sitemap, idx) => {
                                 return (
@@ -143,7 +157,8 @@ function App() {
                             onClick={() => {
                                 const payload = {
                                     url: baseUrl,
-                                    sitemap: selectedSitemap
+                                    sitemap: selectedSitemap,
+                                    apiKey: apiKey,
                                 };
 
                                 fetch(url + "/setOpenhabData", {method: "POST", body: JSON.stringify(payload)});
