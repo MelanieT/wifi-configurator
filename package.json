@@ -14,7 +14,9 @@
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.4.5",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.4.0",
+    "react-spinners": "^0.15.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
